@@ -43,14 +43,14 @@ function CardComponent({
     }
 
     return (
-        <Card sx={{ width: '220px', height: '220px' }}>
+        <Card data-cy={`activity-item-${data.id}`} sx={{ width: '220px', height: '220px' }}>
             <CardContent sx={{ height: '100%', display: "flex", flexDirection: 'column', justifyContent: 'space-between' }}>
-                <Typography component={'p'} sx={{ fontWeight: 700, fontSize: '18px', cursor: 'pointer' }}>
+                <Typography data-cy="activity-item-title" component={'p'} sx={{ fontWeight: 700, fontSize: '18px', cursor: 'pointer' }}>
                     {data.title}
                 </Typography>
                 <Stack direction={'row'} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                    <p>{ConvertDate(data.updated_at)}</p>
-                    <IconButton aria-label="delete" size="small" onClick={() => handleDelete(data)}>
+                    <p data-cy="activity-item-date">{ConvertDate(data.updated_at)}</p>
+                    <IconButton data-cy="activity-item-delete-button" aria-label="delete" size="small" onClick={() => handleDelete(data)}>
                         <FaTrashAlt/>
                     </IconButton>
                 </Stack>

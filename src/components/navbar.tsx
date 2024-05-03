@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 
 function NavbarComponent() {
     return (
-        <AppBar position="static">
+        <AppBar data-cy="header-background" position="static">
             <Container maxWidth="md">
                 <Toolbar>
                     <Typography variant="h6" component={"div"} sx={{flexGrow: 1, fontWeight: 700}}>
-                        <NavLink to={"/"} style={{ color: 'inherit', textDecoration: 'none' }} end>
+                        <NavLink data-cy="header-title" to={"/"} style={{ color: 'inherit', textDecoration: 'none' }} end>
                             TO DO LIST APP
                         </NavLink>
                     </Typography>

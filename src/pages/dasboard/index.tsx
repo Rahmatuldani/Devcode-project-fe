@@ -32,10 +32,10 @@ function Dashboard() {
     return (
         <>
             <Stack direction={'row'} sx={{ justifyContent: 'space-between' }}>
-                <Typography component={"p"} sx={{ fontWeight: 700, fontSize: '36px' }}>
+                <Typography data-cy="activity-title" component={"p"} sx={{ fontWeight: 700, fontSize: '36px' }}>
                     Activity
                 </Typography>
-                <Button variant="contained" sx={{ borderRadius: '30px', textTransform: 'none', fontSize: '18px', fontWeight: '600', gap: '2px' }} onClick={handleAddActivity}>
+                <Button data-cy="activity-add-button" variant="contained" sx={{ borderRadius: '30px', textTransform: 'none', fontSize: '18px', fontWeight: '600', gap: '2px' }} onClick={handleAddActivity}>
                     <FaPlus/>
                     Tambah
                 </Button>
@@ -46,7 +46,7 @@ function Dashboard() {
                 ) : data.length > 0 ? (
                     DisplayData()
                 ) : (
-                    <img src={Image} alt="Image" width={500}/>
+                    <img data-cy="activity-empty-state" src={Image} alt="Image" width={500}/>
                 )}
             </Stack>
         </>
