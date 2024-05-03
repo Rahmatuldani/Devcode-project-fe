@@ -20,7 +20,7 @@ function CardComponent({
 
     function handleDelete(data: ActivityType) {
         Alert({
-            text: `Apakah anda yakin ingin menghapus activity <br/> <strong>${data.title}</strong>`,
+            text: `Apakah anda yakin ingin menghapus activity <br/> <strong>${data.title}</strong>?`,
             icon: 'warning',
             confirmText: 'Hapus',
             cancelButton: true,
