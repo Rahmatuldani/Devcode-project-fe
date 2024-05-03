@@ -1,15 +1,17 @@
 import { AnyAction } from "redux";
 import { ActivityType } from "./types"
-import { fetchActivity, reducerError, reducerLoading } from "./action";
+import { fetchActivity, findActivity, reducerError, reducerLoading } from "./action";
 
 export type ActivityState = {
     readonly activity: ActivityType[];
+    readonly selected: ActivityType | undefined;
     readonly isLoading: boolean;
     readonly error: Error | string | null;
 }
 
 export const ACTIVITY_INITIAL_STATE: ActivityState = {
     activity: [],
+    selected: undefined,
     isLoading: false,
     error: null
 }
@@ -24,6 +26,10 @@ export function activityReducer(
 
     if (fetchActivity.match(action)) {
         return {...state, isLoading: false, activity: action.payload, error: null}
+    }
+    if (findActivity.match(action)) {
+        const activity = state.activity.find(item => item.id === action.payload);
+        return {...state, selected: activity}
     }
 
     if (reducerError.match(action)) {

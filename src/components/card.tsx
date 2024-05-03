@@ -3,9 +3,10 @@ import { FaTrashAlt } from "react-icons/fa";
 import { ActivityType } from "../store/activity/types";
 import { ConvertDate } from "../utils/convert";
 import Alert from "../utils/alert";
-import { DeleteActivityFunction } from "../store/activity/action";
+import { DeleteActivityFunction, FindActivityFunction } from "../store/activity/action";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "redux";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface Props {
     data: ActivityType
@@ -15,6 +16,7 @@ function CardComponent({
     data
 }: Props) {
     const dispatch: Dispatch = useDispatch();
+    const navigate: NavigateFunction = useNavigate();
 
     function handleDelete(data: ActivityType) {
         Alert({
@@ -45,10 +47,15 @@ function CardComponent({
         })
     }
 
+    function handleDetail() {
+        FindActivityFunction(dispatch, data.id)
+        .then(() => navigate(`/detail/${data.id}`))
+    }
+
     return (
         <Card data-cy='activity-item' sx={{ width: '220px', height: '220px' }}>
             <CardContent sx={{ height: '100%', display: "flex", flexDirection: 'column', justifyContent: 'space-between' }}>
-                <Typography data-cy="activity-item-title" component={'p'} sx={{ fontWeight: 700, fontSize: '18px', cursor: 'pointer' }}>
+                <Typography data-cy="activity-item-title" component={'p'} sx={{ fontWeight: 700, fontSize: '18px', cursor: 'pointer' }} onClick={handleDetail}>
                     {data.title}
                 </Typography>
                 <Stack direction={'row'} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>

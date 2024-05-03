@@ -18,6 +18,12 @@ const APIActivity = (() => {
             email: 'testing@gmail.com'
         })
     }
+    
+    async function Update(id: number, title: string) {
+        return await server.patch(`/${id}`, {
+            title: title
+        })
+    }
 
     async function Delete(id: number) {
         return await server.delete(`/${id}`)
@@ -26,6 +32,7 @@ const APIActivity = (() => {
     return {
         Find,
         Create,
+        Update,
         Delete
     }
 })();

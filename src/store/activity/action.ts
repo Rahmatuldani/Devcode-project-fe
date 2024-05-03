@@ -36,11 +36,32 @@ export async function FetchActivityFunction(dispatch: Dispatch) {
 }
 // End Fetch Activity
 
+// Begin Find Activity
+export type FindActivity = ActionWithPayload<ACTIVITY_ACTION_TYPES.FIND_ACTIVITY, number>;
+export const findActivity = withMatcher(
+    (id: number): FindActivity => createAction(ACTIVITY_ACTION_TYPES.FIND_ACTIVITY, id)
+)
+export async function FindActivityFunction(dispatch: Dispatch, id: number) {
+    await dispatch(findActivity(id))
+}
+// End Find Activity
+
 // Create Activity
 export async function CreateActivityFunction(dispatch: Dispatch) {
     dispatch(reducerLoading())
     try {
         await APIActivity.Create()
+        FetchActivityFunction(dispatch)
+    } catch (error) {
+        dispatch(reducerError(error as Error))
+    }
+}
+
+// Create Activity
+export async function UpdateActivityFunction(dispatch: Dispatch, id: number, title: string) {
+    dispatch(reducerLoading())
+    try {
+        await APIActivity.Update(id, title)
         FetchActivityFunction(dispatch)
     } catch (error) {
         dispatch(reducerError(error as Error))

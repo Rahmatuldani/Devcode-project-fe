@@ -9,6 +9,11 @@ export const selectActivity = createSelector(
     (activitySlice) => activitySlice.activity
 )
 
+export const selectActivitySelected = createSelector(
+    [selectActivityReducer],
+    (activitySlice) => activitySlice.selected
+)
+
 export const selectActivityIsLoading = createSelector(
     [selectActivityReducer],
     (activitySlice) => activitySlice.isLoading

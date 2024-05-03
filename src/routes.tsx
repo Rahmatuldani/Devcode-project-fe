@@ -4,6 +4,7 @@ import App from "./App";
 import React from "react";
 
 const Dashboard = React.lazy(() => import('./pages/dasboard'))
+const Detail = React.lazy(() => import('./pages/detail'))
 
 const routes = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const routes = createBrowserRouter([
             {
                 index: true,
                 element: <Dashboard/>
+            },
+            {
+                path: '/detail/:id',
+                element: <Detail/>
             }
         ]
     }
