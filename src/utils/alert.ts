@@ -27,15 +27,12 @@ function Alert({
         confirmButtonText: confirmText ?? 'OK',
         didRender: () => {
             const sweetAlertModal = document.querySelector('.swal2-popup');
-            sweetAlertModal?.setAttribute('data-cy', data_cy)
-        },
-        preConfirm: () => {
-            return true
-        },
-        willClose: () => {
             const cancelButton = document.querySelector('.swal2-cancel');
+            const confirmButton = document.querySelector('.swal2-confirm');
+            sweetAlertModal?.setAttribute('data-cy', data_cy)
             cancelButton?.setAttribute('data-cy', 'modal-delete-cancel-button')
-        }
+            confirmButton?.setAttribute('data-cy', 'modal-delete-confirm-button')
+        },
     });
 }
 
