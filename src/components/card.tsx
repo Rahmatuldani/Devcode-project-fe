@@ -22,20 +22,23 @@ function CardComponent({
             icon: 'warning',
             confirmText: 'Hapus',
             cancelButton: true,
-            cancelButtonText: 'Batal'
+            cancelButtonText: 'Batal',
+            data_cy: 'modal-delete'
         }).then(result => {
             if (result.isConfirmed) {
                 DeleteActivityFunction(dispatch, data.id)
                     .then(() => {
                         Alert({
                             text: 'Activity berhasil dihapus',
-                            icon: 'success'
+                            icon: 'success',
+                            data_cy: 'modal-information'
                         })
                     })
                     .catch(error => {
                         Alert({
                             text: error,
-                            icon: 'error'
+                            icon: 'error',
+                            data_cy: 'modal_information'
                         })
                     })
             }
@@ -43,7 +46,7 @@ function CardComponent({
     }
 
     return (
-        <Card data-cy={`activity-item-${data.id}`} sx={{ width: '220px', height: '220px' }}>
+        <Card data-cy='activity-item' sx={{ width: '220px', height: '220px' }}>
             <CardContent sx={{ height: '100%', display: "flex", flexDirection: 'column', justifyContent: 'space-between' }}>
                 <Typography data-cy="activity-item-title" component={'p'} sx={{ fontWeight: 700, fontSize: '18px', cursor: 'pointer' }}>
                     {data.title}
