@@ -116,23 +116,23 @@ function Detail() {
                             'aria-labelledby': 'menu-button'
                         }}
                     >
-                        <MenuItem data-cy="sort-selection" onClick={() => handleCloseMenu('new')}>
+                        <MenuItem data-cy="sort-latest" onClick={() => handleCloseMenu('new')}>
                             <FaSortAmountDownAlt style={{ marginRight: '1rem' }}/>
                             Terbaru
                         </MenuItem>
-                        <MenuItem data-cy="sort-selection" onClick={() => handleCloseMenu('old')}>
+                        <MenuItem data-cy="sort-oldest" onClick={() => handleCloseMenu('old')}>
                             <FaSortAmountUpAlt style={{ marginRight: '1rem' }}/>
                             Terlama
                         </MenuItem>
-                        <MenuItem data-cy="sort-selection" onClick={() => handleCloseMenu('a-z')}>
+                        <MenuItem data-cy="sort-az" onClick={() => handleCloseMenu('a-z')}>
                             <FaSortAlphaDown style={{ marginRight: '1rem' }}/>
                             A-Z
                         </MenuItem>
-                        <MenuItem data-cy="sort-selection" onClick={() => handleCloseMenu('z-a')}>
+                        <MenuItem data-cy="sort-za" onClick={() => handleCloseMenu('z-a')}>
                             <FaSortAlphaUp style={{ marginRight: '1rem' }}/>
                             Z-A
                         </MenuItem>
-                        <MenuItem data-cy="sort-selection" onClick={() => handleCloseMenu('uncheck')}>
+                        <MenuItem data-cy="sort-unfinished" onClick={() => handleCloseMenu('uncheck')}>
                             <LuArrowUpDown style={{ marginRight: '1rem' }}/>
                             Belum Selesai
                         </MenuItem>
