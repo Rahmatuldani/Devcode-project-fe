@@ -50,11 +50,11 @@ function ListComponent({
     }
 
     return (
-        <Card sx={{ width: '100%' }}>
+        <Card data-cy="todo-item" sx={{ width: '100%' }}>
             <CardContent sx={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem !important' }}>
                 <Typography component={"div"} sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Checkbox checked={check} onChange={handleCheck}/>
-                    <GoDotFill style={{ 
+                    <Checkbox data-cy="todo-item-checkbox" checked={check} onChange={handleCheck}/>
+                    <GoDotFill data-cy="todo-item-priority-indicator" style={{ 
                         color: 
                             data.priority === 'very-high' ? 'red' : 
                             data.priority === 'high' ?  'orange' : 
@@ -63,17 +63,18 @@ function ListComponent({
                             'purple'
                         }}/>
                     <Typography
+                        data-cy="todo-item-title"
                         sx={{
                             textDecoration: check ? 'line-through' : 'none'
                         }}
                     >
                         {data.title}
                     </Typography>
-                    <IconButton aria-label="edit" size="small" onClick={() => setOpen(true)}>
+                    <IconButton data-cy="todo-item-edit-button" aria-label="edit" size="small" onClick={() => setOpen(true)}>
                         <MdEdit/>
                     </IconButton>
                 </Typography>
-                <IconButton aria-label="delete" onClick={handleDelete}>
+                <IconButton data-cy="todo-item-delete-button" aria-label="delete" onClick={handleDelete}>
                     <MdDelete/>
                 </IconButton>
             </CardContent>

@@ -44,19 +44,21 @@ function ModalComponent({
             })
         }
         setTitle('')
-        setPriority('')
+        setPriority('very-high')
         handleClose()
     }
 
     return (
         <Dialog
+            data-cy="modal-add"
             open={open}
             onClose={handleClose}
             aria-labelledby="modal-component"
         >
             <Box sx={{ width: '600px' }}>
-                <DialogTitle>Tambah List Item</DialogTitle>
+                <DialogTitle data-cy="modal-add-title">Tambah List Item</DialogTitle>
                 <IconButton
+                    data-cy="modal-add-close-button"
                     aria-label="close"
                     onClick={handleClose}
                     sx={{
@@ -70,8 +72,9 @@ function ModalComponent({
                 </IconButton>
                 <DialogContent dividers>
                     <FormGroup>
-                        <InputLabel id="priority-label">Nama List Item</InputLabel>
+                        <InputLabel data-cy="modal-add-name-title" id="priority-label">Nama List Item</InputLabel>
                         <TextField
+                            data-cy="modal-add-name-input"
                             id="list-item"
                             placeholder="Tambahkan nama list item"
                             variant="outlined"
@@ -82,31 +85,32 @@ function ModalComponent({
                         />
                     </FormGroup>
                     <FormGroup sx={{ width: 'fit-content' }}>
-                        <InputLabel id="priority-label">Priority</InputLabel>
+                        <InputLabel data-cy="modal-add-priority-title" id="priority-label">Priority</InputLabel>
                         <Select
+                            data-cy="modal-add-priority-dropdown"
                             labelId="priority-label"
                             id="priority-menu"
                             value={priority}
                             label="Priority"
                             onChange={handlePriority}
                         >
-                            <MenuItem value="very-high">
+                            <MenuItem data-cy="modal-add-priority-very-high" value="very-high">
                                 <GoDotFill style={{ color: 'red', marginRight: '1rem' }} />
                                 Very High
                             </MenuItem>
-                            <MenuItem value="high">
+                            <MenuItem data-cy="modal-add-priority-high" value="high">
                                 <GoDotFill style={{ color: 'orange', marginRight: '1rem' }} />
                                 High
                             </MenuItem>
-                            <MenuItem value="medium">
+                            <MenuItem data-cy="modal-add-priority-medium" value="medium">
                                 <GoDotFill style={{ color: 'green', marginRight: '1rem' }} />
                                 Medium
                             </MenuItem>
-                            <MenuItem value="low">
+                            <MenuItem data-cy="modal-add-priority-low" value="low">
                                 <GoDotFill style={{ color: 'blue', marginRight: '1rem' }} />
                                 Low
                             </MenuItem>
-                            <MenuItem value="very-low">
+                            <MenuItem data-cy="modal-add-priority-very-low" value="very-low">
                                 <GoDotFill style={{ color: 'purple', marginRight: '1rem' }} />
                                 Very Low
                             </MenuItem>
@@ -115,6 +119,7 @@ function ModalComponent({
                 </DialogContent>
                 <DialogActions>
                     <Button
+                        data-cy="modal-add-save-button"
                         variant="contained"
                         autoFocus
                         sx={{ borderRadius: '30px', textTransform: 'none', fontSize: '18px', fontWeight: '600' }}
