@@ -28,6 +28,9 @@ function ModalComponent({
     function handlePriority(e: SelectChangeEvent) { setPriority(e.target.value) }
 
     function handleSubmit() {
+        if (!title) {
+            return
+        }
         if (data) {
             UpdateTodoFunction(dispatch, data.id, {
                 activity_group_id: id,
@@ -46,6 +49,12 @@ function ModalComponent({
         setPriority('very-high')
         handleClose()
     }
+
+    React.useEffect(() => {
+        const select = document.querySelector(".MuiSelect-select")
+        console.log(select);
+        
+    }, []);
 
     return (
         <Dialog
@@ -86,30 +95,30 @@ function ModalComponent({
                     <FormGroup sx={{ width: 'fit-content' }}>
                         <InputLabel data-cy="modal-add-priority-title" id="priority-label">Priority</InputLabel>
                         <Select
-                            data-cy="modal-add-priority-item"
+                            data-cy="modal-add-priority-dropdown"
                             labelId="priority-label"
                             id="priority-menu"
                             value={priority}
                             label="Priority"
                             onChange={handlePriority}
                         >
-                            <MenuItem data-cy="modal-add-priority-very-high" value="very-high">
+                            <MenuItem data-cy="modal-add-priority-item" value="very-high">
                                 <GoDotFill style={{ color: 'red', marginRight: '1rem' }} />
                                 Very High
                             </MenuItem>
-                            <MenuItem data-cy="modal-add-priority-high" value="high">
+                            <MenuItem data-cy="modal-add-priority-item" value="high">
                                 <GoDotFill style={{ color: 'orange', marginRight: '1rem' }} />
                                 High
                             </MenuItem>
-                            <MenuItem data-cy="modal-add-priority-medium" value="medium">
+                            <MenuItem data-cy="modal-add-priority-item" value="medium">
                                 <GoDotFill style={{ color: 'green', marginRight: '1rem' }} />
                                 Medium
                             </MenuItem>
-                            <MenuItem data-cy="modal-add-priority-low" value="low">
+                            <MenuItem data-cy="modal-add-priority-item" value="low">
                                 <GoDotFill style={{ color: 'blue', marginRight: '1rem' }} />
                                 Low
                             </MenuItem>
-                            <MenuItem data-cy="modal-add-priority-very-low" value="very-low">
+                            <MenuItem data-cy="modal-add-priority-item" value="very-low">
                                 <GoDotFill style={{ color: 'purple', marginRight: '1rem' }} />
                                 Very Low
                             </MenuItem>
