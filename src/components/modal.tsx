@@ -32,7 +32,7 @@ function ModalComponent({
             UpdateTodoFunction(dispatch, data.id, {
                 activity_group_id: id,
                 title,
-                priority,
+                priority: priority ?? undefined,
             })
         } else {
             CreateTodoFunction(dispatch, {
