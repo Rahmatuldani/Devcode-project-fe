@@ -54,10 +54,12 @@ function CardComponent({
 
     return (
         <Card data-cy='activity-item' sx={{ width: '220px', height: '220px' }}>
-            <CardContent sx={{ height: '100%', display: "flex", flexDirection: 'column', justifyContent: 'space-between' }}>
-                <Typography data-cy="activity-item-title" component={'p'} sx={{ fontWeight: 700, fontSize: '18px', cursor: 'pointer' }} onClick={handleDetail}>
+            <CardContent sx={{ height: '70%', display: "flex", flexDirection: 'column', justifyContent: 'space-between', cursor: 'pointer' }} onClick={handleDetail}>
+                <Typography data-cy="activity-item-title" component={'p'} sx={{ fontWeight: 700, fontSize: '18px' }}>
                     {data.title}
                 </Typography>
+            </CardContent>
+            <CardContent>
                 <Stack direction={'row'} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
                     <p data-cy="activity-item-date">{ConvertDate(data.created_at)}</p>
                     <IconButton data-cy="activity-item-delete-button" aria-label="delete" size="small" onClick={() => handleDelete(data)}>
