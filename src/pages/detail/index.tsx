@@ -83,6 +83,7 @@ function Detail() {
                             value={title} 
                             onChange={(e) => setTitle(e.target.value)}
                             onBlur={handleChangeTitle}
+                            autoFocus
                         />
                     ) : (
                         <Typography data-cy="todo-title" component={"p"} sx={{ fontWeight: 700, fontSize: '36px' }} onClick={() => setChangeTitle(true)}>
