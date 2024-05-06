@@ -1,5 +1,6 @@
 export type ApiRespons = {
-    status: string;
-    message: string;
+    total: number;
+    limit: number;
+    skip: number;
     data: object[] | object;
 }

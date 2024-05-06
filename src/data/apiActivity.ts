@@ -9,7 +9,11 @@ const APIActivity = (() => {
     })
 
     async function Find() {
-        return await server.get('/')
+        return await server.get('?email=testing@gmail.com')
+    }
+    
+    async function FindOne(id: number) {
+        return await server.get(`/${id}`)
     }
 
     async function Create() {
@@ -31,6 +35,7 @@ const APIActivity = (() => {
 
     return {
         Find,
+        FindOne,
         Create,
         Update,
         Delete

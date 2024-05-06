@@ -59,7 +59,7 @@ function CardComponent({
                     {data.title}
                 </Typography>
                 <Stack direction={'row'} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
-                    <p data-cy="activity-item-date">{ConvertDate(data.updated_at)}</p>
+                    <p data-cy="activity-item-date">{ConvertDate(data.created_at)}</p>
                     <IconButton data-cy="activity-item-delete-button" aria-label="delete" size="small" onClick={() => handleDelete(data)}>
                         <FaTrashAlt/>
                     </IconButton>

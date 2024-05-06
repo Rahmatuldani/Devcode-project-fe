@@ -4,14 +4,14 @@ import { fetchActivity, findActivity, reducerError, reducerLoading } from "./act
 
 export type ActivityState = {
     readonly activity: ActivityType[];
-    readonly selected: ActivityType | undefined;
+    readonly selected: ActivityType | null;
     readonly isLoading: boolean;
     readonly error: Error | string | null;
 }
 
 export const ACTIVITY_INITIAL_STATE: ActivityState = {
     activity: [],
-    selected: undefined,
+    selected: null,
     isLoading: false,
     error: null
 }
@@ -28,8 +28,7 @@ export function activityReducer(
         return {...state, isLoading: false, activity: action.payload, error: null}
     }
     if (findActivity.match(action)) {
-        const activity = state.activity.find(item => item.id === action.payload);
-        return {...state, selected: activity}
+        return {...state, isLoading: false, selected: action.payload, error: null}
     }
 
     if (reducerError.match(action)) {

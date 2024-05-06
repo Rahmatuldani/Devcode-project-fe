@@ -6,38 +6,21 @@ import { ActivityType } from "../../store/activity/types";
 import { useDispatch, useSelector } from "react-redux";
 import { selectActivitySelected } from "../../store/activity/selector";
 import React from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate, useParams } from "react-router-dom";
 import { UpdateActivityFunction } from "../../store/activity/action";
 import { Dispatch } from "redux";
 import Image from '../../assets/todo.svg';
 import ListComponent from "../../components/list";
 import ModalComponent from "../../components/modal";
 import { TodoType } from "../../store/todo/types";
+import { selectTodo, selectTodoIsLoading } from "../../store/todo/selector";
+import { FetchTodoFunction } from "../../store/todo/action";
 
 function Detail() {
-    const activity: ActivityType | undefined = useSelector(selectActivitySelected);
-    const todo: TodoType[] = [
-        {
-            id: 1,
-            title: "To Do Title",
-            activity_group_id: "1",
-            is_active: "1",
-            priority: "very-high",
-            created_at: new Date(),
-            updated_at: new Date(),
-            deleted_at: null
-        },
-        {
-            id: 2,
-            title: "To Do Title 2",
-            activity_group_id: "1",
-            is_active: "0",
-            priority: "very-low",
-            created_at: new Date(),
-            updated_at: new Date(),
-            deleted_at: null
-        }
-    ]
+    const { id } = useParams();
+    const activity: ActivityType | null = useSelector(selectActivitySelected);
+    const todo: TodoType[] = useSelector(selectTodo);
+    const loading: boolean = useSelector(selectTodoIsLoading);
     const navigate: NavigateFunction = useNavigate();
     const dispatch: Dispatch = useDispatch();
 
@@ -53,10 +36,14 @@ function Detail() {
     function displayData() {
         const component: any[] = []
 
-        todo.forEach(item => component.push(<ListComponent key={item.id} data={item}/>))
+        todo.forEach(item => component.push(<ListComponent id={activity?.id ?? 1} key={item.id} data={item}/>))
 
         return component
     }
+
+    React.useEffect(() => {
+        FetchTodoFunction(dispatch, id ?? '1')
+    }, [dispatch, id]);
 
     return (
         <>
@@ -85,10 +72,12 @@ function Detail() {
                     <FaPlus/>
                     Tambah
                 </Button>
-                <ModalComponent open={openModal} handleClose={() => setOpenModal(false)}/>
+                <ModalComponent id={activity?.id ?? 1} open={openModal} handleClose={() => setOpenModal(false)}/>
             </Stack>
             <Stack direction={'row'} flexWrap={'wrap'} sx={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', gap: "0.5rem" }}>
-                {todo.length > 0 ? (
+                {loading ? (
+                    <>Loading...</>
+                ) : todo.length > 0 ? (
                     displayData()
                 ) : (
                     <img src={Image} alt="Image" width={500}/>

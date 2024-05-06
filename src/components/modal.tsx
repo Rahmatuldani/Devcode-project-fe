@@ -3,30 +3,48 @@ import { MdClose } from "react-icons/md";
 import { TodoType } from "../store/todo/types";
 import React from "react";
 import { GoDotFill } from "react-icons/go";
+import { CreateTodoFunction, UpdateTodoFunction } from "../store/todo/action";
+import { Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 
 interface Props {
+    id: number;
     data?: TodoType;
     open: boolean;
     handleClose: () => void;
 }
 
 function ModalComponent({
+    id,
     data,
     open,
     handleClose,
 }: Props) {
     const [title, setTitle] = React.useState<string>(data?.title ?? '')
     const [priority, setPriority] = React.useState<string>(data?.priority ?? 'very-high')
+    const dispatch: Dispatch = useDispatch();
 
     function handleTitle(e: React.ChangeEvent<HTMLInputElement>) { setTitle(e.target.value) }
     function handlePriority(e: SelectChangeEvent) { setPriority(e.target.value) }
 
     function handleSubmit() {
         if (data) {
-            console.log(title + " - " + priority + " - update");
+            UpdateTodoFunction(dispatch, data.id, {
+                activity_group_id: id,
+                title,
+                priority,
+                is_active: false
+            })
         } else {
-            console.log(title + " - " + priority + " - create");
+            CreateTodoFunction(dispatch, {
+                activity_group_id: id,
+                title,
+                priority,
+                is_active: false
+            })
         }
+        setTitle('')
+        setPriority('')
         handleClose()
     }
 

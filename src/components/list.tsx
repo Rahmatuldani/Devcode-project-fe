@@ -5,18 +5,27 @@ import React from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import Alert from "../utils/alert";
 import ModalComponent from "./modal";
+import { DeleteTodoFunction, UpdateTodoFunction } from "../store/todo/action";
+import { Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 
 interface Props {
+    id: number;
     data: TodoType
 }
 
 function ListComponent({
+    id,
     data
 }: Props) {
-    const [check, setCheck] = React.useState<boolean>(Boolean(parseInt(data.is_active)))
+    const [check, setCheck] = React.useState<boolean>(Boolean(data.is_active))
     const [open, setOpen] = React.useState<boolean>(false)
+    const dispatch: Dispatch = useDispatch();
 
-    function handleCheck() { setCheck(!check) }
+    function handleCheck() {
+        setCheck(!check)
+        UpdateTodoFunction(dispatch, data.id, {is_active: !check})
+    }
 
     function handleDelete() {
         Alert({
@@ -28,11 +37,14 @@ function ListComponent({
             data_cy: 'modal-delete'
         }).then(result => {
             if (result.isConfirmed) {
-                Alert({
-                    text: 'To do list berhasil dihapus',
-                    icon: 'success',
-                    data_cy: 'modal-information'
-                })
+                DeleteTodoFunction(dispatch, data.id)
+                    .then(() => {
+                        Alert({
+                            text: 'To do list berhasil dihapus',
+                            icon: 'success',
+                            data_cy: 'modal-information'
+                        })
+                    })
             }
         });
     }
@@ -65,7 +77,7 @@ function ListComponent({
                     <MdDelete/>
                 </IconButton>
             </CardContent>
-            <ModalComponent data={data} open={open} handleClose={() => setOpen(false)}/>
+            <ModalComponent id={id} data={data} open={open} handleClose={() => setOpen(false)}/>
         </Card>
     );
 }

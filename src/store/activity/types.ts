@@ -10,9 +10,6 @@ export enum ACTIVITY_ACTION_TYPES {
 
 export type ActivityType = {
     id: number;
-    email: string;
     title: string;
     created_at: Date;
-    updated_at: Date;
-    deleted_at: Date | null;
 }

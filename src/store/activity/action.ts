@@ -1,9 +1,9 @@
 import { AxiosResponse } from "axios"
 import APIActivity from "../../data/apiActivity"
-import { ApiRespons } from "../shared/types"
 import { Action, ActionWithPayload, createAction, withMatcher } from "../../utils/reducer";
 import { ACTIVITY_ACTION_TYPES, ActivityType } from "./types";
 import { Dispatch } from "redux";
+import { ApiRespons } from "../shared/types";
 
 // Reducer Loading
 export type ReducerLoading = Action<ACTIVITY_ACTION_TYPES.REDUCER_LOADING>;
@@ -28,8 +28,7 @@ export async function FetchActivityFunction(dispatch: Dispatch) {
     try {
         const response: AxiosResponse = await APIActivity.Find()
         const { data }: ApiRespons = response.data;
-        const result: ActivityType[] = (data as ActivityType[]).slice(0, 15)
-        dispatch(fetchActivity(result))
+        dispatch(fetchActivity(data as ActivityType[]))
     } catch (error) {
         dispatch(reducerError(error as Error))
     }
@@ -37,12 +36,18 @@ export async function FetchActivityFunction(dispatch: Dispatch) {
 // End Fetch Activity
 
 // Begin Find Activity
-export type FindActivity = ActionWithPayload<ACTIVITY_ACTION_TYPES.FIND_ACTIVITY, number>;
+export type FindActivity = ActionWithPayload<ACTIVITY_ACTION_TYPES.FIND_ACTIVITY, ActivityType>;
 export const findActivity = withMatcher(
-    (id: number): FindActivity => createAction(ACTIVITY_ACTION_TYPES.FIND_ACTIVITY, id)
+    (activity: ActivityType): FindActivity => createAction(ACTIVITY_ACTION_TYPES.FIND_ACTIVITY, activity)
 )
 export async function FindActivityFunction(dispatch: Dispatch, id: number) {
-    await dispatch(findActivity(id))
+    dispatch(reducerLoading());
+    try {
+        const response: AxiosResponse = await APIActivity.FindOne(id);
+        dispatch(findActivity(response.data as ActivityType))
+    } catch (error) {
+        dispatch(reducerError(error as Error))
+    }
 }
 // End Find Activity
 
