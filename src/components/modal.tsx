@@ -50,12 +50,6 @@ function ModalComponent({
         handleClose()
     }
 
-    React.useEffect(() => {
-        const select = document.querySelector(".MuiSelect-select")
-        console.log(select);
-        
-    }, []);
-
     return (
         <Dialog
             data-cy="modal-add"

@@ -26,7 +26,7 @@ function Alert({
         confirmButtonColor: '#3085d6',
         confirmButtonText: confirmText ?? 'OK',
         didRender: () => {
-            const sweetAlertModal = document.querySelector('.swal2-container');
+            const sweetAlertModal = document.querySelector('.swal2-popup');
             const cancelButton = document.querySelector('.swal2-cancel');
             const confirmButton = document.querySelector('.swal2-confirm');
             sweetAlertModal?.setAttribute('data-cy', data_cy)
