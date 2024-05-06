@@ -86,7 +86,7 @@ function ModalComponent({
                     <FormGroup sx={{ width: 'fit-content' }}>
                         <InputLabel data-cy="modal-add-priority-title" id="priority-label">Priority</InputLabel>
                         <Select
-                            data-cy="modal-add-priority-dropdown"
+                            data-cy="modal-add-priority-item"
                             labelId="priority-label"
                             id="priority-menu"
                             value={priority}
