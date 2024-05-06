@@ -104,7 +104,7 @@ function ModalComponent({
                                 <GoDotFill style={{ color: 'orange', marginRight: '1rem' }} />
                                 High
                             </MenuItem>
-                            <MenuItem data-cy="modal-add-priority-item" value="medium">
+                            <MenuItem data-cy="modal-add-priority-item" value="normal">
                                 <GoDotFill style={{ color: 'green', marginRight: '1rem' }} />
                                 Medium
                             </MenuItem>
