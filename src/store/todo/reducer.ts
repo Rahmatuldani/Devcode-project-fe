@@ -26,7 +26,7 @@ export function todoReducer(
         return {...state, isLoading: false, todo: action.payload, error: null}
     }
     if (createTodo.match(action)) {
-        return {...state, isLoading: false, todo: [...state.todo, action.payload], error: null}
+        return {...state, isLoading: false, todo: [action.payload, ...state.todo], error: null}
     }
     if (updateTodo.match(action)) {
         const newTodo = state.todo

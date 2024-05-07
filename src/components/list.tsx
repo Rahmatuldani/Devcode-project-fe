@@ -58,7 +58,7 @@ function ListComponent({
                         color: 
                             data.priority === 'very-high' ? 'red' : 
                             data.priority === 'high' ?  'orange' : 
-                            data.priority === 'medium' ?  'green' : 
+                            data.priority === 'normal' ?  'green' : 
                             data.priority === 'low' ?  'blue' : 
                             'purple'
                         }}/>

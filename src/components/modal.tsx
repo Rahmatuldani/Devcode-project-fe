@@ -28,9 +28,6 @@ function ModalComponent({
     function handlePriority(e: SelectChangeEvent) { setPriority(e.target.value) }
 
     function handleSubmit() {
-        if (!title) {
-            return
-        }
         if (data) {
             UpdateTodoFunction(dispatch, data.id, {
                 activity_group_id: id,
@@ -126,6 +123,7 @@ function ModalComponent({
                         autoFocus
                         sx={{ borderRadius: '30px', textTransform: 'none', fontSize: '18px', fontWeight: '600' }}
                         onClick={handleSubmit}
+                        disabled={Boolean(!title)}
                     >
                         Simpan
                     </Button>
