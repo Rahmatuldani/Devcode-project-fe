@@ -39,6 +39,7 @@ function ModalComponent({
                 activity_group_id: id,
                 title,
                 priority,
+                is_active: false
             })
         }
         setTitle('')
