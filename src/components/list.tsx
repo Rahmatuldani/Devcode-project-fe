@@ -47,10 +47,10 @@ function ListComponent({
                     })
             }
         });
-    }
+    }    
 
     return (
-        <Card data-cy="todo-item" sx={{ width: '100%' }}>
+        <Card data-cy="todo-item" sx={{ width: '100%' }} onClick={() => console.log(data)}>
             <CardContent sx={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem !important' }}>
                 <Typography component={"div"} sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <Checkbox data-cy="todo-item-checkbox" checked={check} onChange={handleCheck}/>
